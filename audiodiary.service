@@ -1,0 +1,19 @@
+[Unit]
+Description=Audio diary service
+After=network.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/audiodiary/daemon.py /feed_dir https://feed_url
+User=nobody
+Group=nogroup
+Restart=always
+RestartSec=60
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=audiodiary
+
+[Install]
+WantedBy=multi-user.target
+
